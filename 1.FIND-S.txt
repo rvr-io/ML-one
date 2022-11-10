@@ -1,0 +1,24 @@
+import pandas as pd
+from pandas import DataFrame
+data = pd.read_csv('EnjoySport.csv')
+columnLength= data.shape[1]
+print (data.values)
+h = ['0']*(columnLength-1)
+hp=[]
+hn=[]
+for trainingExample in data.values:
+    if trainingExample[-1]!='no':
+        hp.append(list(trainingExample))
+    else:
+        hn.append(list(trainingExample))
+for i in range (len(hp)):
+    for j in range(columnLength-1):
+        if (h[j]=='0'):
+            h[j]=hp[i][j]
+        if (h[j]!=hp[i][j]):
+                h[j]='?'
+        else:
+                h[j]=hp[i][j]
+print('\nThe positive Hypotheses are:',hp)
+print('\nThe negative Hypotheses are:',hn)
+print('\nThe Maximally Specific Hypothesis h is:',h)
